@@ -23,7 +23,7 @@ public class Topic {
 
     // Activate callBack method on publishers
     public void publish(Message msg) {
-        for (Agent agent : publishers) {
+        for (Agent agent : subscribers) {
             agent.callback(name, msg);
         }
     }

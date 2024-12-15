@@ -16,31 +16,22 @@ public class TopicManagerSingleton {
 
         //Inner class fields
         private static final TopicManager instance = new TopicManager();
-        private ConcurrentHashMap<String, Topic> TopicsMap = new ConcurrentHashMap<>();
+        private ConcurrentHashMap<String, Topic> topicsMap = new ConcurrentHashMap<>();
 
         //Inner class private CTOR - prevent external instantiation
         private TopicManager() {}
 
         public Topic getTopic(String topicName) {
-            for (Topic topic : TopicsMap.values()) {
-                if(topic.name.equals(topicName)) {
-                    return topic;
-                }
-            }
-            TopicsMap.put(topicName, new Topic(topicName));
-            return TopicsMap.get(topicName);
+            return topicsMap.computeIfAbsent(topicName, key -> new Topic(key));
         }
 
+
         public Collection<Topic> getTopics() {
-            return TopicsMap.values();
+            return topicsMap.values();
         }
 
         public void clear(){
-            for(Topic topic : TopicsMap.values()) {
-                TopicsMap.remove(topic.name);
-            }
-
-            TopicsMap.clear();
+            topicsMap.clear();
         }
     }
 

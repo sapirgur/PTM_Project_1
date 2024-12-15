@@ -11,13 +11,13 @@ public class Message {
 Message(byte[] data) {
     this.data = data;
     this.asText = new String(data);
-    this.asDouble = asDouble.tryParseDouble(asText);
+    this.asDouble = this.tryParseDouble(asText);
     this.date = new Date();
 }
 
 public Message(String asText) {
     this.asText = asText;
-    this.asDouble = asDouble.tryParseDouble(asText);
+    this.asDouble = tryParseDouble(this.asText);
     this.date = new Date();
     this.data = asText.getBytes();
 }
@@ -25,8 +25,8 @@ public Message(String asText) {
 public Message(double asDouble) {
     this.asDouble = asDouble;
     this.date = new Date();
-    this.asText = asText.toString(asDouble);
-    this.data = asText.getBytes();
+    this.asText = Double.toString(asDouble);
+    this.data = this.asText.getBytes();
 }
 
 private double tryParseDouble(String value) {
