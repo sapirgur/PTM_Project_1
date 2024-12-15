@@ -8,7 +8,7 @@ public class Message {
     public final double asDouble;
     public final Date date;
 
-public Message(byte[] data) {
+Message(byte[] data) {
     this.data = data;
     this.asText = new String(data);
     this.asDouble = asDouble.tryParseDouble(asText);
