@@ -28,6 +28,16 @@ public class Topic {
         }
     }
 
+    // Getter for subscribers
+    public List<Agent> getSubscribers() {
+        return subscribers;
+    }
+
+    // Getter for publishers
+    public List<Agent> getPublishers() {
+        return publishers;
+    }
+
     //Remove agent from the subscribers
     public void unsubscribe(Agent agent) {
         subscribers.remove(agent);
