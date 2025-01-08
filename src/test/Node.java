@@ -1,4 +1,4 @@
-package configs;
+package test;
 import graph.Message;
 
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ public class Node {
     private String name ;
     private List<Node> edges;
     private Message message;
+
     public Node(String name) {
         this.name = name;
         this.edges = new ArrayList<Node>();
@@ -36,7 +37,9 @@ public class Node {
     }
 
     public void addEdge(Node node) {
-        this.edges.add(node);
+        if (!edges.contains(node)) {
+            edges.add(node);
+        }
     }
 
     private boolean dfs(Node node, Set<Node> finishedNodes,Set<Node> processedNodes ) {
