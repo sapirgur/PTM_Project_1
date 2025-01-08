@@ -8,7 +8,7 @@ public class Topic {
     private List<Agent> publishers;
 
     //CTOR
-    Topic(String name) {
+    public Topic(String name) {
         this.name = name;
         this.subscribers = new ArrayList<>();
         this.publishers = new ArrayList<>();
@@ -26,6 +26,16 @@ public class Topic {
         for (Agent agent : subscribers) {
             agent.callback(name, msg);
         }
+    }
+
+    // Getter for subscribers
+    public List<Agent> getSubscribers() {
+        return subscribers;
+    }
+
+    // Getter for publishers
+    public List<Agent> getPublishers() {
+        return publishers;
     }
 
     //Remove agent from the subscribers
