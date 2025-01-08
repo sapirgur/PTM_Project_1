@@ -8,7 +8,7 @@ public class Topic {
     private List<Agent> publishers;
 
     //CTOR
-    Topic(String name) {
+    public Topic(String name) {
         this.name = name;
         this.subscribers = new ArrayList<>();
         this.publishers = new ArrayList<>();
