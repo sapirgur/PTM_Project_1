@@ -22,9 +22,9 @@ public class TopicManagerSingleton {
         private TopicManager() {}
 
         public Topic getTopic(String topicName) {
-            return topicsMap.computeIfAbsent(topicName, key -> new Topic(key));
+            Topic topic = topicsMap.computeIfAbsent(topicName, key -> new Topic(key));
+            return topic;
         }
-
 
         public Collection<Topic> getTopics() {
             return topicsMap.values();
