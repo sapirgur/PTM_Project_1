@@ -31,10 +31,6 @@ public class BinOpAgent implements Agent {
 
 
     }
-    @Override
-    public void create() {
-        System.out.println(getName() + " created.");
-    }
 
     @Override
     public String getName() {return agentName;}
