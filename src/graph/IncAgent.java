@@ -13,10 +13,6 @@ public class IncAgent implements Agent {
     public String getName() {
         return "IncAgent";
     }
-    @Override
-    public void create() {
-        System.out.println(getName() + " created.");
-    }
 
 
     @Override

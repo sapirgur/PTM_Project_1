@@ -15,10 +15,6 @@ public class PlusAgent implements Agent {
         return "PlusAgent";
     }
 
-    @Override
-    public void create() {
-        System.out.println(getName() + " created.");
-    }
 
     @Override
     public void callback(String topic, Message msg) {

@@ -5,5 +5,4 @@ public interface Agent {
     void callback(String topic, Message msg);
     void close();
     void reset();
-    void create();
 }

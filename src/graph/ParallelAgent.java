@@ -17,10 +17,6 @@ public class ParallelAgent implements Agent {
         return agent.getName(); // Forward to the wrapped agent
     }
 
-    @Override
-    public void create() {
-        System.out.println(getName() + " created.");
-    }
 
     @Override
     public void callback(String topic, Message msg) {
