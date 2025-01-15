@@ -1,8 +1,7 @@
 package configs;
 import graph.ParallelAgent;
-import graph.Agent;
-import graph.BinOpAgent;
 
+import configs.BinOpAgent;
 import java.util.ArrayList;
 import java.util.List;
 
