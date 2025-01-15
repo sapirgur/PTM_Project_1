@@ -7,6 +7,11 @@ public class IncAgent implements Agent {
     public IncAgent(String[] subs, String[] pubs) {
         this.subs = subs;
         this.pubs = pubs;
+
+        // Corrected to use TopicManager
+        TopicManagerSingleton.TopicManager tm = TopicManagerSingleton.get();
+        tm.getTopic(subs[0]).subscribe(this);
+        tm.getTopic(pubs[0]).addPublisher(this);
     }
 
     @Override
@@ -26,17 +31,17 @@ public class IncAgent implements Agent {
             if (!Double.isNaN(value)) {
                 double result = value + 1;
                 Message resultMessage = new Message(result);
-                System.out.println("Publishing to " + pubs[0] + ": " + resultMessage.asText);
-                // Simulate publishing (e.g., send to a TopicManager)
-            } else {
-                System.err.println("Invalid value received: " + msg.asText);
+                TopicManagerSingleton.get().getTopic(pubs[0]).publish(resultMessage);
             }
         }
     }
 
     @Override
     public void close() {
-        System.out.println("Closing IncAgent");
+        // Corrected to use TopicManager
+        TopicManagerSingleton.TopicManager tm = TopicManagerSingleton.get();
+        tm.getTopic(subs[0]).unsubscribe(this);
+        tm.getTopic(pubs[0]).removePublisher(this);
     }
 
     @Override
