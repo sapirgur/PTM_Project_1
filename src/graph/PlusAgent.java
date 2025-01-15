@@ -16,6 +16,11 @@ public class PlusAgent implements Agent {
     }
 
     @Override
+    public void create() {
+        System.out.println(getName() + " created.");
+    }
+
+    @Override
     public void callback(String topic, Message msg) {
         if (subs.length < 2 || pubs.length < 1) return;
 
