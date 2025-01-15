@@ -28,7 +28,7 @@ public class GenericConfig implements Config {
                 lines.add(line.trim());
             }
 
-            // Ensure the file has valid structure (multiple of 3 lines per agent)
+            // Ensure the file has a valid structure (multiple of 3 lines per agent)
             if (lines.size() % 3 != 0) {
                 throw new IllegalArgumentException("Invalid configuration file format.");
             }
@@ -47,12 +47,8 @@ public class GenericConfig implements Config {
                 // Wrap the agent with ParallelAgent
                 ParallelAgent parallelAgent = new ParallelAgent(agent);
                 agents.add(parallelAgent);
-
-                // Create the agent (e.g., initialize it)
-                parallelAgent.create();
             }
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("Failed to create agents from configuration file.", e);
         }
     }
