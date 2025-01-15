@@ -8,6 +8,12 @@ public class PlusAgent implements Agent {
     public PlusAgent(String[] subs, String[] pubs) {
         this.subs = subs;
         this.pubs = pubs;
+
+        // Corrected to use TopicManager
+        TopicManagerSingleton.TopicManager tm = TopicManagerSingleton.get();
+        tm.getTopic(subs[0]).subscribe(this);
+        tm.getTopic(subs[1]).subscribe(this);
+        tm.getTopic(pubs[0]).addPublisher(this);
     }
 
     @Override
@@ -30,14 +36,18 @@ public class PlusAgent implements Agent {
         if (!Double.isNaN(x) && !Double.isNaN(y)) {
             double result = x + y;
             Message resultMessage = new Message(result);
-            System.out.println("Publishing to " + pubs[0] + ": " + resultMessage.asText);
-            // Simulate publishing (e.g., send to a TopicManager)
+            TopicManagerSingleton.get().getTopic(pubs[0]).publish(resultMessage);
+
         }
     }
 
     @Override
     public void close() {
-        System.out.println("Closing PlusAgent");
+        // Corrected to use TopicManager
+        TopicManagerSingleton.TopicManager tm = TopicManagerSingleton.get();
+        tm.getTopic(subs[0]).unsubscribe(this);
+        tm.getTopic(subs[1]).unsubscribe(this);
+        tm.getTopic(pubs[0]).removePublisher(this);
     }
 
     @Override
