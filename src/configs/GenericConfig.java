@@ -67,5 +67,10 @@ public class GenericConfig implements Config {
         agents.clear();
     }
 
+    @Override
+    public String getName() {
+        return "GenericConfig";
+    }
+
 
 }
