@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenericConfig implements Config {
-
     private final List<ParallelAgent> agents = new ArrayList<>();
     private String configFile;
 
@@ -72,5 +71,12 @@ public class GenericConfig implements Config {
         return "GenericConfig";
     }
 
+    @Override
+    public int getVersion() {
+        return 1;
+    }
 
+    public void setConfFile(String configFile) {
+        this.configFile = configFile;
+    }
 }
