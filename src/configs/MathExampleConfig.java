@@ -11,9 +11,15 @@ public class MathExampleConfig implements Config {
 
     @Override
     public void create() {
-        new BinOpAgent("plus", "A", "B", "R1", (x,y)->x+y);
-        new BinOpAgent("minus", "A", "B", "R2", (x,y)->x-y);
-        new BinOpAgent("mul", "R1", "R2", "R3", (x,y)->x*y);
+        // Create and wrap BinOpAgents
+        agents.add(new ParallelAgent(new BinOpAgent("plus", "A", "B", "R1", (x, y) -> x + y)));
+        agents.add(new ParallelAgent(new BinOpAgent("minus", "A", "B", "R2", (x, y) -> x - y)));
+        agents.add(new ParallelAgent(new BinOpAgent("mul", "R1", "R2", "R3", (x, y) -> x * y)));
+
+        // Initialize agents (optional if they require setup in create())
+        for (ParallelAgent agent : agents) {
+            agent.reset(); // Assuming `reset()` prepares agents (use `create()` if needed)
+        }
     }
 
     @Override
@@ -24,6 +30,15 @@ public class MathExampleConfig implements Config {
     @Override
     public int getVersion() {
         return 1;
+    }
+
+    @Override
+    public void close() {
+        // Close all agents
+        for (ParallelAgent agent : agents) {
+            agent.close();
+        }
+        agents.clear(); // Clear the list after closing
     }
     
 }
