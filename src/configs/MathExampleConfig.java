@@ -1,7 +1,10 @@
 package configs;
 
 
+import graph.ParallelAgent;
+
 public class MathExampleConfig implements Config {
+    private final List<ParallelAgent> agents = new ArrayList<>(); // Store all agents
 
     @Override
     public void create() {
