@@ -20,13 +20,7 @@ public class ParallelAgent implements Agent {
 
     @Override
     public void callback(String topic, Message msg) {
-        executor.submit(() -> {
-            try {
-                agent.callback(topic, msg); // Execute in a separate thread
-            } catch (Exception e) {
-                System.err.println("Error in callback: " + e.getMessage());
-            }
-        });
+        executor.submit(() -> agent.callback(topic, msg));
     }
 
     @Override
