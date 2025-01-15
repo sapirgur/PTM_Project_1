@@ -58,5 +58,14 @@ public class GenericConfig implements Config {
         }
     }
 
+    @Override
+    public void close() {
+        // Close all agents
+        for (ParallelAgent agent : agents) {
+            agent.close();
+        }
+        agents.clear();
+    }
+
 
 }
