@@ -18,6 +18,11 @@ public class ParallelAgent implements Agent {
     }
 
     @Override
+    public void create() {
+        System.out.println(getName() + " created.");
+    }
+
+    @Override
     public void callback(String topic, Message msg) {
         executor.submit(() -> {
             try {
