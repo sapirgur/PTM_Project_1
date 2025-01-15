@@ -1,7 +1,10 @@
 package configs;
-
-
 import graph.ParallelAgent;
+import graph.Agent;
+import graph.BinOpAgent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MathExampleConfig implements Config {
     private final List<ParallelAgent> agents = new ArrayList<>(); // Store all agents
